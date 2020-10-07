@@ -2,8 +2,6 @@
 PAQUETES -> conjunto de modulos
 """
 
-
-
 print('Probando PAQUETES: ')
 
 from mipaquete import pruebas, herramientas
