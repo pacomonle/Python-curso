@@ -63,7 +63,7 @@ rutaDestino = str(pathlib.Path().absolute()) + '/14-sistema-archivos/archivos/fi
 # rutaAlternativa = './13-paquetes/fichero_copiado_texto.txt'
 shutil.copyfile(rutaOrigen, rutaDestino)
 """
-# Mover
+# Mover.
 """
 rutaOrigen = str(pathlib.Path().absolute()) + '/14-sistema-archivos/fichero2_texto.txt'
 # mover y renombrar
