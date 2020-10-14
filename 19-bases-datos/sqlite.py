@@ -7,7 +7,7 @@ sistema base de datos ligero pre instalado en el lenguaje python
 import sqlite3
 
 # 2. conexion
-conexion = sqlite3.connect('pruebas.db') # pasar el nombre de la data base
+conexion = sqlite3.connect('./19-bases-datos/pruebas.db') # pasar el nombre de la data base
 
 # crear cursor
 cursor = conexion.cursor()
