@@ -58,22 +58,26 @@ def index(req):
         <p>FIN DEL LISTADO, {str(suma)} total años</p>
         """
         pass
-    return HttpResponse(layout + html)
+    # return HttpResponse(layout + html)
+    return render(req, 'index.html')
     pass
 def hola_mundo(req, redirigir = 0):
     """
     accion / metodo
+    """
     """
     if redirigir == 1:
        # return redirect('/page/python/django')
         return redirect('page', nombre='python', secciones='django')
         pass
     else:
-        return HttpResponse(layout + """
+        return HttpResponse(layout + "
         <h1>Hola desde Django</h1>
         <h3>FRancisco MOnleon</h3>
-        """)
+        ")
         pass
+    """
+    return render(req, 'hola_mundo.html')
     pass
 # (req, nombre= 'python', secciones= 20)
 def pagina(req, nombre='', secciones=''):
@@ -89,11 +93,14 @@ def pagina(req, nombre='', secciones=''):
     else:
         html  += f"<strong>No has enviado ninguno parametro por la url</strong>"
         pass
-    return HttpResponse(layout + """
+    """
+    return HttpResponse(layout + "
         <h1>Nueva Pagina web</h1>
         <h3>Django framework Python</h3>
         <br/>
-    """+ html)
+    "+ html)
+    """
+    return render(req, 'pagina.html')
     pass
 def contacto(req):
     """

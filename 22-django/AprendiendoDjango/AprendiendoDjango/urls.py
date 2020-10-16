@@ -25,10 +25,10 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('inicio/', views.index, name= 'inicio'),
     path('hola-django/', views.hola_mundo, name = 'hola_django'),
-     path('hola-django/<int:redirigir>', views.hola_mundo, name = 'hola_django'),
+    # path('hola-django/<int:redirigir>', views.hola_mundo, name = 'hola_django'),
     path('page/', views.pagina, name='page'),
-    path('page/<str:nombre>', views.pagina, name='page'),
-    path('page/<str:nombre>/<str:secciones>', views.pagina, name='page'),
+    # path('page/<str:nombre>', views.pagina, name='page'),
+    # path('page/<str:nombre>/<str:secciones>', views.pagina, name='page'),
     path('contact/', views.contacto, name='contacto')
 
 ]

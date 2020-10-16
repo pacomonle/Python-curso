@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <!--titulo de cada pagina-->
+    <title>
+        {% block title %}
+            
+        {% endblock %}
+    </title>
+    <link rel="stylesheet" type='text/css' href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <!--Cabecera de la pagina-->
+        <header>
+            <div id='logo'>
+            <!--logo Django-->
+               <img src="{% static 'images/logo.png' %}" alt="log django" title='logo de la app' >
+              <h1> Web Django | Francisco Monleon </h1>
+            </div>    
+        </header>
+        <nav>
+            <ul>
+                <li> 
+                    <a href='/inicio'>Inicio</a>
+                </li>
+                <li>
+                    <a href='/hola-django'>Django</a> 
+                </li>
+                <li>
+                    <a href='/page'>Pagina</a>
+                </li>
+                <li>
+                    <a href='/contact'>Contacto</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="barra">
+            <span class="esquina-izquierda"></span>
+            <span class="relleno-barra"></span>
+            <span class="esquina-derecha"></span>
+        </div>
+       
+        <div id='content'>
+            <div class="box">
+                <h2 class="title">Titulo prueba</h2>
+                {% block content %}
+                    <strong>contenido del block layout</strong>
+                {% endblock %}
+            </div>
+        </div>
+        <footer>
+            Master Python &copy Francisco Monleon
+        </footer>
+</body>
+</html>

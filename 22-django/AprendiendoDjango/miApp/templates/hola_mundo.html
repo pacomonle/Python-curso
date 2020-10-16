@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block title  %}
+hola_mundo | miApp Django
+{% endblock  %}
+
+{% block content %}
+ {% comment %} 
+ cargar los datos del padre
+ {% endcomment %}
+{{ block.super }}
+    <h1 class='title'>Hola desde Django</h1>
+    <h3>FRancisco MOnleon</h3>
+{% endblock content %}
+
