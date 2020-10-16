@@ -17,6 +17,15 @@ header{
     margin: 0 auto;
 }
 
+.box p, .box h2, .box h3, .box ul{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+ul, ol{
+    margin-left: 20px;
+}
+
 #logo{
     width: 55%;
     height: 130px;

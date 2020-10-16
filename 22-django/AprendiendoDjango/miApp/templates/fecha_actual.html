@@ -1,0 +1,16 @@
+<h1>Estamos en el año: 2021</h1>
+<h2>Curso que vamos a realizar en este año: {{curso}}</h2>
+  <p>Años hasta el 2030 : </p>
+        <ul>
+        {% for year in listaYear  %}
+              {% if year|divisibleby:2 == True %}
+                     <li>{{year}} , es un año par</li>
+              {% else %}
+                     <li>{{year}} , es una año impar</li>
+              {% endif %}
+              
+        {% endfor %}
+        </ul>
+        <p>{{sumaTotal}}</p>
+
+<h5>{{saludo}}</h5>

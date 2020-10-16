@@ -32,67 +32,51 @@ def index(req):
     """
     inicio page
     """
-    html = """
-        <h1>Inicio</h1>
-        <h3><strong>Te encuentras en la Home Page</strong></h3>
-        <p>Años hasta el 2030 : </p>
-        <ul>
-    """
     year= 2021
     suma= 0
+    listaYear = []
     while year < 2031:
-        if year%2 == 0:
-            html += "<li> Año Par -> " 
-            pass
-        else:
-            html += "<li> Año Impar -> " 
-            pass
-        html += f" {str(year)}</li>"
-        year += 1
-        suma += 1
+        listaYear.append(year)
+        year+=1
+        suma+=1
         pass
     else:
-        html += f"""
-        <ul>
-        <hr>
-        <p>FIN DEL LISTADO, {str(suma)} total años</p>
-        """
+        sumaTotal = f'FIN DEL LISTADO, total años {suma}'
         pass
+   
+    curso = 'Aprendiendo Django'
+    lenguajes = ['python', 'php','javascrip', 'c++']
     # return HttpResponse(layout + html)
-    return render(req, 'index.html')
+    return render(req, 'index.html', {
+        'title': 'index | miApp Django',
+        'mi_variable': 'soy un dato de la vista',
+        'curso': curso,
+        'lenguajes':lenguajes,
+        'sumaTotal': sumaTotal,
+        'listaYear': listaYear
+    })
     pass
 def hola_mundo(req, redirigir = 0):
     """
     accion / metodo
     """
-    """
+    
     if redirigir == 1:
        # return redirect('/page/python/django')
         return redirect('page', nombre='python', secciones='django')
         pass
     else:
-        return HttpResponse(layout + "
-        <h1>Hola desde Django</h1>
-        <h3>FRancisco MOnleon</h3>
-        ")
+        return render(req, 'hola_mundo.html')
         pass
-    """
-    return render(req, 'hola_mundo.html')
+    
+   
     pass
 # (req, nombre= 'python', secciones= 20)
 def pagina(req, nombre='', secciones=''):
     """
     page 
     """
-    html= '<h2>PARAMETROS: </h2><br>'
-    if nombre and secciones:
-        html  += f"""<strong>Parametro 1º por la url str : {nombre.upper()}</strong>
-        <br/>
-        <strong>Parametro 2ª por la url str : {secciones.upper()}</strong>"""
-        pass
-    else:
-        html  += f"<strong>No has enviado ninguno parametro por la url</strong>"
-        pass
+  
     """
     return HttpResponse(layout + "
         <h1>Nueva Pagina web</h1>
@@ -100,7 +84,10 @@ def pagina(req, nombre='', secciones=''):
         <br/>
     "+ html)
     """
-    return render(req, 'pagina.html')
+    return render(req, 'pagina.html',{
+        'nombre': nombre.upper(),
+        'secciones': secciones.upper()
+    })
     pass
 def contacto(req):
     """

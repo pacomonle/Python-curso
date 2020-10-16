@@ -24,16 +24,16 @@
         <nav>
             <ul>
                 <li> 
-                    <a href='/inicio'>Inicio</a>
+                    <a href="{% url 'index' %}">Inicio</a>
                 </li>
                 <li>
-                    <a href='/hola-django'>Django</a> 
+                    <a href="{% url 'hola_django' %}">Django</a> 
                 </li>
                 <li>
-                    <a href='/page'>Pagina</a>
+                    <a href="{% url 'page' 'Master' 'Python and Django' %}">Pagina</a>
                 </li>
                 <li>
-                    <a href='/contact'>Contacto</a>
+                    <a href="{% url 'contacto' %}">Contacto</a>
                 </li>
             </ul>
         </nav>
@@ -52,7 +52,10 @@
             </div>
         </div>
         <footer>
-            Master Python &copy Francisco Monleon
+            Master Python &copy Francisco Monleon {% now "Y" %}
+            {% comment 'd/m/Y' %}
+            tambien se pueden mostrar horas , minutos y segundos
+            {% endcomment %}
         </footer>
 </body>
 </html>

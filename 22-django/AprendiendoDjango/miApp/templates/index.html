@@ -1,13 +1,39 @@
 {% extends 'layout.html' %}
 
 {% block title  %}
-index | miApp Django
+       {{title}}
 {% endblock  %}
 
 {% block content %}
- <h1 class='title'>Inicio</h1>
-        <h3><strong>Te encuentras en la Home Page</strong></h3>
-        <p>Años hasta el 2030 : </p>
+ <h1 class='title'>{{title}}</h1>
+ <p>{{mi_variable}}</p>
+
+ {% if curso and curso == 'Aprendiendo Django'%} <p>Curso: {{curso}}</p>
+ 
+ {% else %} <p>No estas realizando ningun curso actualmente</p>
+ 
+{% endif %}
+
+
+
+<h3>Lenguajes de Programacion mas comunes: </h3>
+       <ul>
+       {% for lenguaje in lenguajes  %}
+               {% comment %} 
+               {{forloop.last}} {{forloop.first}}  
+               {{forloop.revcounter}}
+               {% endcomment %}
+              <li> {{forloop.counter}}.  {{lenguaje}} </li>
+              
+       {%empty%}
+              <li>No hay ningun lenguaje en la lista</li>
+       {% endfor %}
+       </ul>
+
+<hr>
+<h3><strong>Te encuentras en la Home Page</strong></h3>
+       {% include 'fecha_actual.html' with saludo='hola mundo desde plantilla' %}
+      
 {% endblock content %}
 
       

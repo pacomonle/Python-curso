@@ -6,7 +6,17 @@ pagina de prueba | miApp Django
 
 {% block content %}
         <h1 class='title'>Nueva Pagina web</h1>
-                <h3>Django framework Python</h3>
+        <h3>Django framework Python</h3>
+        <br/>
+        <h2>PARAMETROS: </h2>
+        <br/>
+        {% if nombre and secciones %}
+                <strong>Parametro 1º por la url str : {{nombre}}</strong>
                 <br/>
+                <strong>Parametro 2ª por la url str : {{secciones}}</strong>
+        {% else %} 
+                <strong>No has enviado ninguno parametro por la url</strong>
+        {% endif %}
+  
 {% endblock %}
 
