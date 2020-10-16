@@ -66,7 +66,10 @@ def hola_mundo(req, redirigir = 0):
         return redirect('page', nombre='python', secciones='django')
         pass
     else:
-        return render(req, 'hola_mundo.html')
+        return render(req, 'hola_mundo.html', {
+            'texto': '',
+            'lista': ['uno', 'dos', 'tres']
+        })
         pass
     
    

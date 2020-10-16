@@ -10,7 +10,30 @@ hola_mundo | miApp Django
  {% endcomment %}
 {{ block.super }}
     <h1 class='title'>Hola desde Django</h1>
-    <h3>FRancisco MOnleon</h3>
+    <h2>Probando tipos de filtro</h2>
+
+    <h3>cut (cortar) letra o: {{'FRancisco MOnleon'|cut:"o"}}</h3>
+    <h3>deafult (valor por defecto): {{texto|default:"texto por defecto"}}</h3>
+    <h3>first (1ª elemento de una lista): {{lista|first}}</h3>
+    <h3>join (añadir ' , ' lista): {{lista|join:', '}}</h3>
+    <h3>random (random de una lista): {{lista|random}}</h3>
+    <h3>length (long str o lista): {{'texto pruebas'|length}} caracteres tien la cadena 'texto pruebas'</h3>
+    <h3>lower y upper (minus. y mayus.): {{'HOLA'|lower}} {{'mundo'|upper}}</h3>
+    <h3>combinacion de filtros striptags y wordcount: {{'<h1>texto</h1><strong>pruebas</strong> hola <p> mundo <p>'|striptags|wordcount}}</h3>
+    {% comment 'tipos de filtros' %}
+    quitar espacios string -> |cut:"ñ" 
+    dar valor por defecto -> |default:'texto'
+    filtros de listas -> |first , |last, |length, |random, |join:', '
+    mayusculas o minusculas str ->|upper, |lower
+    combinacion fitros -> |striptags|wordcount
+    {% endcomment %}
+
+    {% comment %}
+        cargar filtros personalizados
+        se cargan al principio
+    {% endcomment %}
+    {% load filters %}
+    <h5>{{'Francisco Monleon'|saludo|safe}}</h5>
     
 {% endblock content %}
 
