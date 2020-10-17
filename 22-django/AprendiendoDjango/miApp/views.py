@@ -1,4 +1,8 @@
 from django.shortcuts import HttpResponse, redirect, render
+from miApp.models import Article, Category
+# para hacer consultas OR
+from django.db.models import Q
+
 """
 MVC - modelo vista controlador[Acciones(metodos)]
 MVT - modelo template vista[Acciones(metodos)]
@@ -126,4 +130,86 @@ def contacto(req):
     </form>
     """
     return HttpResponse(layout + html)
+    pass
+
+def crear_articulo(req, title, content, public):
+    """
+   crear articulo en la data base
+    """
+    articulo = Article( 
+        title = title,
+        content = content,
+        public = public
+    )
+    # para crear tambien hay otros metodos como el create()
+    articulo.save()
+    return HttpResponse(f'Articulo creado: <i>{articulo.title}</i> - <i>{articulo.content}</i>')
+    pass
+
+def articulo(req):
+    """
+    sacar datos de articulo de la database
+    """
+    try:
+        # get devuelve un registro, filtrar por pk, id, title ....
+        articulo = Article.objects.get(pk=5, public= True)
+        response = f'Articulo: {articulo.title}'
+        pass
+    except Exception as error:
+        error = 'no existe ese articulo'
+        response =f'{error}'
+        pass
+    
+    
+    return HttpResponse(response)
+    pass
+
+def editar_articulo(req, id):
+    """
+    Actualizar registro database
+    """
+    articulo = Article.objects.get(pk=id)
+    articulo.title = 'Sexto articulo'
+    articulo.content = 'Contenido 6º articulo'
+    articulo.public = True
+
+    articulo.save()
+    return HttpResponse(f'ARticulo actualizado {articulo.id}: {articulo.title}')
+    pass
+
+def articulos(req):
+    """
+    listar articulos
+    """
+    # orden inverso -> ('-title') / todos los regostros .all() / intervalo [3:6] # [limit]
+    articulos = Article.objects.order_by('id') # [limit]
+    articulos_filter = Article.objects.filter(title__exact = 'Tercer articulo', content__contains='todo' ) # __lookups
+    # lookups: -sin case sensitive __iexact, 
+    #   id__gt= 12(greather than), __gte = 12 (greater than equal) 
+    #   __lt (menor) __lte (menor o igual)   
+    # 
+    articulos_exclude = Article.objects.all().exclude(public = False)  
+     # consultas SQL AND con Django
+    articulos_SQL = Article.objects.raw('SELECT * FROM miApp_article WHERE title= " articulo" AND public = 0')
+    # consultas OR con Django
+    articulos_OR = Article.objects.filter(
+        Q(title__contains = 'Tercer') | Q(id = 10)
+    )
+    return render(req, 'articulos.html', {
+        'articulos': articulos,
+        'articulos_SQL': articulos_SQL,
+        'articulos_filtrados': articulos_filter,
+        'articulos_exclude': articulos_exclude,
+        'articulos_OR': articulos_OR
+    })
+    pass
+   
+
+def borrar_articulo(req, id):
+    """
+    eliminar articulo
+    """
+    articulo = Article.objects.get(pk = id)
+    articulo.delete()
+    return redirect('articulos')
     pass

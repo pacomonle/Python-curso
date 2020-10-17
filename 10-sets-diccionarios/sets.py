@@ -15,3 +15,4 @@ print(type(personas))
 personas.add('Julio')
 personas.remove('Manuel')
 print(personas)
+

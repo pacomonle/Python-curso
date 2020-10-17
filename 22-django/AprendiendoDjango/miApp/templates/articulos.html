@@ -1,0 +1,81 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+   Listado Articulos
+{% endblock title %}
+
+{% block content %}
+<h1 class='title'> Listado de articulos de la base de datsos: </h1>
+<hr>
+    <ul>
+        {% for articulo in articulos  %}
+        <li> {{forloop.counter}}. -------------------
+            <h4> {{articulo.title}} -  / id : ({{articulo.id}}) / </h4>
+            <p>
+             {{articulo.content}} - {{articulo.public}}
+             </p>
+             <a href="{% url 'borrar_articulo' id=articulo.id %}">Borrar</a>
+            <br>
+        </li>
+   
+        {% empty %}
+        <h5>Noy hay ningun articulo que listar.</h5>
+        {% endfor %}
+     </ul>
+<hr>
+<h1 class='title'> Listado de articulos EXCLUDE de la base de datsos: </h1>
+<h3>Exclude: public = FALSE</h3>
+<hr>
+    <ul>
+        {% for articulo in articulos_exclude  %}
+        <li> {{forloop.counter}}. -------------------
+            <h4> {{articulo.title}} -  / id : ({{articulo.id}}) / </h4>
+            <p>
+             {{articulo.content}} - {{articulo.public}}
+             </p>
+             <a href="{% url 'borrar_articulo' id=articulo.id %}">Borrar</a>
+            <br>
+        </li>
+   
+        {% empty %}
+        <h5>Noy hay ningun articulo que listar.</h5>
+        {% endfor %}
+     </ul>
+<hr>
+<h1 class='title'> FILTRADO de articulos de la base de datsos: </h1>
+    <h3>Busqueda: title = 'Tercer articulo'</h3>
+     <ul>
+    {% for item in articulos_filtrados %}
+    <li> {{forloop.counter}}. -------------------
+            <h4> {{item.title}} -  / id : ({{item.id}}) / </h4>
+            <p>
+             {{item.created_at}} 
+             </p>
+        <br>
+    </li>
+    {% empty %}
+        <h5>Noy hay ningun articulo que listar.</h5>
+    {% endfor %}
+    </ul>
+<hr>
+<h1 class='title'> Listado de articulos SQL de la base de datsos: </h1>
+<h3>busqueda: title = 'articulo' y public = FALSE</h3>
+<hr>
+ {% for articulo in articulos_SQL %}
+        <p>
+        {{articulo.id}} - {{articulo.title}}
+        </p>
+ {% endfor %}
+   
+<hr>
+<h1 class='title'> Listado de articulos consulta OR: </h1>
+<h3>busqueda: title = 'Tercer' OR id = 10</h3>
+<hr>
+ {% for articulo in articulos_OR %}
+        <p>
+        {{articulo.id}} - {{articulo.title}}
+        </p>
+ {% endfor %}
+   
+<hr>
+{% endblock content %}

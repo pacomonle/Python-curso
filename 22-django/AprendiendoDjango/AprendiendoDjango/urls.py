@@ -29,6 +29,10 @@ urlpatterns = [
     path('page/', views.pagina, name='page'),
     path('page/<str:nombre>', views.pagina, name='page'),
     path('page/<str:nombre>/<str:secciones>', views.pagina, name='page'),
-    path('contact/', views.contacto, name='contacto')
-
+    path('contact/', views.contacto, name='contacto'),
+    path('crear-articulo/<str:title>/<str:content>/<str:public>', views.crear_articulo, name='crear_articulo'),
+    path('articulo/', views.articulo, name='articulo'),
+    path('editar-articulo/<str:id>', views.editar_articulo, name='editar_articulo'),
+    path('articulos/', views.articulos, name='articulos'),
+    path('borrar-articulo/<str:id>', views.borrar_articulo, name='borrar_articulo')
 ]
