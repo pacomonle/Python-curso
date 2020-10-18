@@ -50,4 +50,10 @@ if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
     
     pass
-
+"""
+# Configuracion titulo del admin panel
+title = 'Master Python y Django'
+admin.site.site_header= title
+admin.site.site_title= title
+admin.site.index_title= 'PANEL de GESTION'
+"""
