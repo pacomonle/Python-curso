@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+Formularios | Django
+{% endblock title %}
+
+
+
+{% block content %}
+<h1 class='title'>Formularios Django</h1>
+
+<form action="" method="POST">
+
+{% if form.errors %}
+
+<strong class='rojo' style='color: red;'>Hay errores en el Formulario!!!</strong>
+
+{% endif %}
+
+{% comment %} 
+Para utilizaar el metodo post
+{% endcomment %}
+{% csrf_token %}
+
+{% comment 'formularios django' %}
+{{form.as_ul}} o {{form.as_p}} muestra el formulario en una <ul> o en <p>
+{% endcomment %}
+
+  {{form.as_p}}
+
+    <input type="submit" value="Guardar">
+</form>
+
+
+
+{% endblock content %}

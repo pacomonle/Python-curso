@@ -6,6 +6,23 @@
 
 {% block content %}
 <h1 class='title'> Listado de articulos de la base de datsos: </h1>
+
+{% comment %}
+    Mostrar mensaje flash
+{% endcomment %}
+{% if messages %}
+
+{% for message in messages  %}
+
+<div class="message">
+    {{message}}
+</div>
+
+{% endfor %}
+
+{% endif %}
+
+
 <hr>
     <ul>
         {% for articulo in articulos  %}

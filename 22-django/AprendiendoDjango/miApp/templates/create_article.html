@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+Formularios | Django
+{% endblock title %}
+
+
+
+{% block content %}
+<h1 class='title'>Formularios Django</h1>
+
+<form action="{% url 'guardar_articulo' %}" method="POST">
+{% comment %} 
+Para utilizaar el metodo post
+{% endcomment %}
+{% csrf_token %}
+
+    <div class="form-group" style='width=100%'>
+        <label for="title">Titulo</label>
+        <input type="text" class="form-control" name="title" placeholder="titulo articulo">
+    </div>
+    <br>
+    <label for="content">Contenido</label>
+    <div class="form-group">
+        <label for="content"></label>
+        <textarea class="form-control" name="content" rows="3"></textarea>
+    </div> 
+    <br>
+    <div class="form-group">
+        <label for="public">¿Publicado?</label>
+        <select name="public" >
+            <option value="none">--- seleccion ---</option>
+            <option value="1">Publico</option>
+            <option value="0">Privado</option>
+        </select>
+    </div>
+    <input type="submit" value="Guardar">
+</form>
+
+
+
+{% endblock content %}

@@ -2,6 +2,10 @@ from django.shortcuts import HttpResponse, redirect, render
 from miApp.models import Article, Category
 # para hacer consultas OR
 from django.db.models import Q
+# import del formulario de django
+from miApp.forms import FormArticle
+# import mensajes flash
+from django.contrib import messages
 
 """
 MVC - modelo vista controlador[Acciones(metodos)]
@@ -132,20 +136,6 @@ def contacto(req):
     return HttpResponse(layout + html)
     pass
 
-def crear_articulo(req, title, content, public):
-    """
-   crear articulo en la data base
-    """
-    articulo = Article( 
-        title = title,
-        content = content,
-        public = public
-    )
-    # para crear tambien hay otros metodos como el create()
-    articulo.save()
-    return HttpResponse(f'Articulo creado: <i>{articulo.title}</i> - <i>{articulo.content}</i>')
-    pass
-
 def articulo(req):
     """
     sacar datos de articulo de la database
@@ -213,3 +203,93 @@ def borrar_articulo(req, id):
     articulo.delete()
     return redirect('articulos')
     pass
+
+def crear_articulo(req, title, content, public):
+    """
+   crear articulo en la data base
+    """
+    articulo = Article( 
+        title = title,
+        content = content,
+        public = public
+    )
+         # para crear tambien hay otros metodos como el create()
+    articulo.save()
+    return HttpResponse(f'Articulo creado: <i>{articulo.title}</i> - <i>{articulo.content}</i>')
+    # return HttpResponse('hola mundo')
+    pass
+
+def create_article(req):
+    """
+   crear articulo en la data base -
+   usando FORMULARIOS
+    """
+    return render(req, 'create_article.html')
+    pass
+
+def save_article(req):
+    """
+   crear articulo en la data base
+    """
+    if req.method == 'POST':
+        title = req.POST['title']
+        # validaciones 
+        if len(title) < 5:
+            return HttpResponse('<h2>La longitud del titulo minimo 5 caracteres</h2>')
+            pass
+        content = req.POST['content']
+        public = req.POST['public']
+
+        articulo = Article( 
+            title = title,
+            content = content,
+            public = public
+        )
+         # para crear tambien hay otros metodos como el create()
+        articulo.save()
+        return HttpResponse(f'Articulo creado: <i>{articulo.title}</i> - <i>{articulo.content}</i>')
+        pass
+    else:
+        return HttpResponse('<h2>El articulo no se ha podido grabar correctamente</h2>')
+        pass 
+   
+    pass
+
+def create_full_article(req):
+    """
+    vista para crear articulos con el form de django
+    - importar el form creado en miApp
+    """
+    if req.method == 'POST':
+        formulario = FormArticle(req.POST)
+        if formulario.is_valid():
+            data_form = formulario.cleaned_data
+
+            title = data_form.get('title')
+            content = data_form.get('content')
+            public = data_form['public']
+            
+            articulo = Article( 
+            title = title,
+            content = content,
+            public = public
+            )
+         # para crear tambien hay otros metodos como el create()
+            articulo.save()
+
+            # crear mensaje flash (sesion se muestra 1 sola vez)
+            messages.success(req, f'El articulo se guardo correctamente, su id es {articulo.id}')
+
+            return redirect('articulos')
+            pass
+        # return HttpResponse(articulo.title + ' - ' + articulo.content + ' - '+ str(articulo.public))
+        pass
+    else:
+        formulario = FormArticle()
+        pass
+    
+    return render(req, 'create_full_article.html', {
+        'form': formulario,
+    })
+    pass
+
