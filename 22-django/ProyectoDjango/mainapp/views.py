@@ -1,6 +1,10 @@
 from django.shortcuts import render
 
 # Create your views here.
+"""
+Views
+mainapp
+"""
 def index(req):
     """
    vista index
