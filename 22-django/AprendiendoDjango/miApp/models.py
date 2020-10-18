@@ -12,7 +12,7 @@ class Article(models.Model):
     """
     title = models.CharField(max_length = 150, verbose_name='Titulo')
     content = models.TextField(verbose_name='Contenido')
-    image = models.ImageField(default = 'null', verbose_name='Miniatura')
+    image = models.ImageField(default = 'null', verbose_name='Miniatura', upload_to='articles') # indicar donde guardar los archivos
     public = models.BooleanField(verbose_name='¿Publicado?')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Creado')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Editado')

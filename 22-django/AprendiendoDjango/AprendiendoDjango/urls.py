@@ -18,6 +18,8 @@ from django.urls import path
 
 # Importar app con las views
 from miApp import views
+# para cargar imagenes importar los settings
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -42,4 +44,10 @@ urlpatterns = [
     path('create-full-article/', views.create_full_article, name='create_full_articulo'),
 ]
 
+# Configuracion para cargar las imagenes
+if settings.DEBUG:
+    from django.conf.urls.static import static
+    urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+    
+    pass
 
