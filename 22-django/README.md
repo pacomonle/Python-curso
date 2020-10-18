@@ -17,7 +17,11 @@ crear SQL ->
 # python manage.py sqlmigrate miApp 0001
 # python manage.py migrate
 
-
+ -- admin panel --
+crear super usuario: NolitoxD / pacomonle@live.com / Ab123456admin
+# python manage.py createsuperuser
+despues:
+# python manage.py runserver
 
 
 Ayudas
